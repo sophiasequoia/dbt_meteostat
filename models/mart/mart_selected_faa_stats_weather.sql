@@ -86,9 +86,9 @@ SELECT pa.city
 	   , ws.*
 FROM total_stats ts
 JOIN {{ref('prep_airports')}} pa
-USING (faa)
+ON ts.faa = pa.faa
 JOIN weather_stats ws -- because it's an inner join, I don't actually need a where statement specifying the three airports
-USING (faa)
+ON ts.faa = ws.faa
 
 
 
