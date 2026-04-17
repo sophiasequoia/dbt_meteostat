@@ -83,12 +83,20 @@ SELECT pa.city
 	   , pa.country
 	   , pa.name
 	   , ts.* 
-	   , ws.*
+	   , avg_min_temp_c
+	   , avg_max_temp_c
+	   , avg_precip_mm
+	   , avg_snow_mm
+	   , avg_wind_direction -- why? it has only nulls
+	   , avg_wind_kmh
+	   , avg_wind_peakgust_kmh
 FROM total_stats ts
 JOIN {{ref('prep_airports')}} pa
-ON ts.faa = pa.faa
+USING (faa)
+--ON ts.faa = pa.faa
 JOIN weather_stats ws -- because it's an inner join, I don't actually need a where statement specifying the three airports
-ON ts.faa = ws.faa
+USING (faa) 
+--ON ts.faa = ws.faa
 
 
 
@@ -156,7 +164,13 @@ SELECT pa.city
 	   , pa.country
 	   , pa.name
 	   , ts.* 
-	   , ws.*
+	   , avg_min_temp_c
+	   , avg_max_temp_c
+	   , avg_precip_mm
+	   , avg_snow_mm
+	   , avg_wind_direction -- why? it has only nulls
+	   , avg_wind_kmh
+	   , avg_wind_peakgust_kmh
 FROM total_stats ts
 JOIN prep_airports pa
 USING (faa)
