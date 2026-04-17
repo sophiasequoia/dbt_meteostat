@@ -25,3 +25,5 @@ hourly_data AS (
 )
 SELECT * 
 FROM hourly_data
+JOIN {{ref('weather_codes')}}
+USING (condition_code)
