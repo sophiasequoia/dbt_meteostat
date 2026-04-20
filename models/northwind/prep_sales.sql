@@ -29,7 +29,7 @@ SELECT o.order_id
 	   , o.customer_id
 	   , o.order_date
 	   , p.product_id
-	   , p.supplier_id
+--	   , p.supplier_id
 	   , p.product_name
 	   , p.category_id
 	   , c.category_name
@@ -37,30 +37,18 @@ SELECT o.order_id
 	   , d.quantity
 	   , d.discount
 	   , d.unit_price * d.quantity * (1 - d.discount) AS revenue
-	   , o.required_date
-	   , o.shipped_date
-	   , o.ship_via
-	   , o.ship_city
-	   , o.ship_country
-	   , o.employee_id
+--	   , o.required_date
+--	   , o.shipped_date
+--	   , o.ship_via
+--	   , o.ship_city
+--	   , o.ship_country
+--	   , o.employee_id
 	   , DATE_PART('year', order_date)::TEXT AS order_year
 	   , DATE_PART('month', order_date)::TEXT AS order_month
-FROM {{ref(staging_orders)}} o
-JOIN  {{ref(staging_order_details)}} d
-USING (order_id)
-JOIN {{ref(staging_products)}} p
-USING (product_id)
-JOIN {{ref(staging_categories)}} c
-USING (category_id)
-
-
-
-
-
-
-
-
-
+FROM {{ref('staging_orders')}} o
+JOIN  {{ref('staging_order_details')}} d USING (order_id)
+JOIN {{ref('staging_products')}} p USING (product_id)
+LEFT JOIN {{ref('staging_categories')}} c USING (category_id)
 
 
 
@@ -91,11 +79,45 @@ JOIN staging_order_details d
 USING (order_id)
 JOIN staging_products p
 USING (product_id)
-JOIN staging_categories c
+LEFT JOIN staging_categories c
 USING (category_id)
 ;*/
 
 
+/*
+ Solution from alex:
+ 
+ WITH orders AS (
+    SELECT * FROM {{ ref('staging_orders') }}
+),
+order_details as (
+    SELECT * FROM {{ ref('staging_order_details') }}
+),
+products as (
+    SELECT * FROM {{ ref('staging_products') }}
+),
+categories as (
+    SELECT * FROM {{ ref('staging_categories') }}
+),
+joined as (
+    SELECT
+        o.order_id,
+        o.customer_id,
+        p.product_name,
+        c.category_name,
+        od.unit_price,
+        od.quantity,
+        od.discount,
+        (od.unit_price * od.quantity * (1 - od.discount)) AS revenue,
+        EXTRACT(year FROM  o.order_date) AS order_year,
+        EXTRACT(month FROM o.order_date) AS order_month
+    FROM orders o
+    JOIN order_details od USING (order_id)
+    JOIN products p USING (product_id)
+    LEFT JOIN categories c USING (category_id)
+)
+SELECT * FROM joined
+ */
 
 
 
