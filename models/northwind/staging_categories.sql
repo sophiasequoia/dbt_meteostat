@@ -13,8 +13,8 @@ WITH source_data AS ( -- this source_data cte thing is apparently just dbt conve
 )
 SELECT categoryid AS category_id
 	   , categoryname AS category_name
-	   , description
-	   , picture
+--	   , description
+--	   , picture
 FROM source_data
 
 
@@ -25,8 +25,8 @@ SELECT * FROM northwind.categories;
 
 SELECT categoryid AS category_id
 	   , categoryname AS category_name
-	   , description
-	   , picture
+--	   , description
+--	   , picture
 FROM northwind.categories
 ;
 */
