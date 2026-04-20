@@ -1,5 +1,4 @@
-
-WITH source_data AS ( -- this source_data cte thing is apparently just dbt convention, according to Hilal
+WITH source_data AS (
     SELECT *
     FROM {{source('northwind_data', 'order_details')}}
 )
@@ -9,5 +8,3 @@ SELECT orderid AS order_id
 	   , quantity::INT AS quantity
 	   , discount::NUMERIC
 FROM source_data
-
-
