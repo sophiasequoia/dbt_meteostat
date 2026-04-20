@@ -53,12 +53,11 @@ LEFT JOIN {{ref('staging_categories')}} c USING (category_id)
 
 
 -- as query for testing:
-/*
-SELECT o.order_id
+/*SELECT o.order_id
 	   , o.customer_id
 	   , o.order_date
 	   , p.product_id
-	   , p.supplier_id
+--	   , p.supplier_id
 	   , p.product_name
 	   , p.category_id
 	   , c.category_name
@@ -66,12 +65,12 @@ SELECT o.order_id
 	   , d.quantity
 	   , d.discount
 	   , d.unit_price * d.quantity * (1 - d.discount) AS revenue
-	   , o.required_date
-	   , o.shipped_date
-	   , o.ship_via
-	   , o.ship_city
-	   , o.ship_country
-	   , o.employee_id
+--	   , o.required_date
+--	   , o.shipped_date
+--	   , o.ship_via
+--	   , o.ship_city
+--	   , o.ship_country
+--	   , o.employee_id
 	   , DATE_PART('year', order_date)::TEXT AS order_year
 	   , DATE_PART('month', order_date)::TEXT AS order_month
 FROM staging_orders o
