@@ -1,4 +1,4 @@
-/*- Use `{{ source() }}` to pull data from the raw tables.
+/*- Use ` to pull data from the raw tables.
 
 - Rename columns to snake_case.
 
