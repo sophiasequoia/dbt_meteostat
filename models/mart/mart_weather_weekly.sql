@@ -24,7 +24,7 @@ SELECT airport_code AS faa
 FROM {{ref('prep_weather_daily')}}
 GROUP BY faa, week_of
 ORDER BY faa, week_of
-;
+
 
 
 -- as regular query for testing:
