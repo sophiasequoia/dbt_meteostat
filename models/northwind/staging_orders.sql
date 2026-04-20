@@ -18,12 +18,12 @@ SELECT orderid AS order_id
 	   , requireddate::DATE AS required_date
 	   , shippeddate::DATE AS shipped_date
 	   , shipvia AS ship_via
-	   , freight
-	   , shipname AS ship_name
-	   , shipaddress AS ship_address
+--	   , freight
+--	   , shipname AS ship_name
+--	   , shipaddress AS ship_address
 	   , shipcity AS ship_city
-	   , shipregion AS ship_region
-	   , shippostalcode AS ship_postal_code
+--	   , shipregion AS ship_region
+--	   , shippostalcode AS ship_postal_code
 	   , shipcountry AS ship_country
 FROM source_data
 

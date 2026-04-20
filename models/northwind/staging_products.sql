@@ -15,12 +15,12 @@ SELECT productid AS product_id
 	   , productname AS product_name
 	   , supplierid AS supplier_id
 	   , categoryid AS category_id
-	   , quantityperunit AS quantity_per_unit
+--	   , quantityperunit AS quantity_per_unit
 	   , unitprice::NUMERIC AS unit_price
-	   , unitsinstock::INT AS units_in_stock
-	   , unitsonorder::INT AS units_on_order
-	   , reorderlevel AS reorder_level
-	   , discontinued
+--	   , unitsinstock::INT AS units_in_stock
+--	   , unitsonorder::INT AS units_on_order
+--	   , reorderlevel AS reorder_level
+--	   , discontinued
 FROM source_data
 
 
