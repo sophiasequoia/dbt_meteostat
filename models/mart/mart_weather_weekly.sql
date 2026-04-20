@@ -21,7 +21,7 @@ SELECT airport_code AS faa
 	   , MAX(wind_peakgust_kmh) AS max_wind_peakgust_kmh
 	   , ROUND(AVG(avg_pressure_hpa), 2) AS avg_avg_pressure_hpa
 	   , SUM(sun_minutes) AS sum_sun_minutes --> only nulls?
-FROM {{REF(prep_weather_daily)}}
+FROM {{ref('prep_weather_daily')}}
 GROUP BY faa, week_of
 ORDER BY faa, week_of
 ;
