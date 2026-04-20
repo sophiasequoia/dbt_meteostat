@@ -54,6 +54,7 @@ departures AS ( -- airport as origin/departure
 ),
 total_stats AS ( -- for practice, put both together
 SELECT origin AS faa
+	   , d.date AS date
 	   , n_unique_dests
 	   , n_unique_origins
 	   , dep_planned + arr_planned AS total_planned
@@ -66,7 +67,7 @@ SELECT origin AS faa
 	   , n_unique_airlines_as_dest
 FROM departures d 
 JOIN arrivals a 
-ON d.origin = a.dest 
+ON d.origin = a.dest -- also join on date?
 ),
 weather_stats AS (
 	SELECT airport_code AS faa
@@ -145,7 +146,7 @@ total_stats AS ( -- for practice, put both together
 		   , n_unique_airlines_as_dest
 	FROM departures d 
 	JOIN arrivals a 
-	ON d.origin = a.dest 
+	ON d.origin = a.dest -- also join on date?
 ),
 weather_stats AS ( -- I'm gonna use prep_weather_hourly just because Alex said that's what he'd prefer us to use
 	SELECT airport_code AS faa
