@@ -94,7 +94,7 @@ SELECT pa.city
 	   , avg_wind_peakgust_kmh
 FROM total_stats ts
 JOIN {{ref('prep_airports')}} pa
-USING (faa, date)
+USING (faa)
 JOIN weather_stats ws -- because it's an inner join, I don't actually need a where statement specifying the three airports
 USING (faa, date) 
 
