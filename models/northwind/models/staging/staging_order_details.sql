@@ -9,7 +9,7 @@
 
 WITH source_data AS ( -- this source_data cte thing is apparently just dbt convention, according to Hilal
     SELECT *
-    FROM {{ source('northwind', 'order_details') }}
+    FROM {{ source('northwind_data', 'order_details') }}
 )
 SELECT orderid AS order_id
 	   , productid AS product_id
