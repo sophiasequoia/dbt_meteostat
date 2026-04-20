@@ -6,8 +6,8 @@
 
 - Keep only relevant columns.*/
 
-
-WITH source_data AS ( -- this source_data cte thing is apparently just dbt convention, according to Hilal
+-- this source_data cte thing is apparently just dbt convention, according to Hilal
+WITH source_data AS ( 
     SELECT *
     FROM {{source('northwind_data', 'order_details')}}
 )
