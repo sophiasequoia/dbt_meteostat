@@ -28,7 +28,7 @@ You can order the output for readability
 
 WITH sales AS ( 
 	SELECT *
-	FROM {{ref(prep_sales)}}
+	FROM {{ref('prep_sales')}}
 )
 SELECT order_year
 	   , order_month
